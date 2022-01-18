@@ -8,6 +8,9 @@ I want to learn more about writing actual x64, because I complain too much about
 ## Why
 I thought it would be a fun party trick if I could start writing in x64 assembly. Then, I realised that there is some real-world potential to being able to debug assembly rather than write it. It would also be cool if I could optimise some of my coursework (especially those relating to performance engineering) using assembly; that way I would *definitely* be the coolest kid on the block.
 
+## How
+I'm following along with [this textbook](http://www.egr.unlv.edu/~ed/assembly64.pdf).
+
 ## Progress Log
 - 18/01/22
     - Ran up to chapter 6.0 of the textbook.
