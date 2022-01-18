@@ -1,0 +1,26 @@
+     1                                  SECTION .data
+     2 00000000 48656C6C6F2C20776F-     msg:        db "Hello, world,", 0
+     2 00000009 726C642C00         
+     3 0000000E 2E2E2E616E6420676F-     msg2:       db "...and goodbye!", 0
+     3 00000017 6F646279652100     
+     4 0000001E 25730A00                fmt:        db "%s", 10, 0
+     5                                  
+     6                                  SECTION .text
+     7                                  extern printf
+     8                                  global main, _start
+     9                                  
+    10                                  main:
+    11                                  _start:
+    12 00000000 BE[00000000]                    mov esi, msg    ; 64-bit ABI passing order starts with edi, esi, ...
+    13 00000005 BF[1E000000]                    mov edi, fmt    ;
+    14 0000000A B800000000                      mov eax, 0      ; printf is varargs, so EAX counts # of non-integer arguments being passed
+    15 0000000F E8(00000000)                    call printf
+    16                                  
+    17 00000014 BE[0E000000]                    mov esi, msg2   ; 64-bit ABI passing order starts with edi, esi
+    18 00000019 BF[1E000000]                    mov edi, fmt    ;
+    19 0000001E B800000000                      mov eax, 0      ; printf is varargs, so EAX counts # of non-integer arguments being passed
+    20 00000023 E8(00000000)                    call printf
+    21                                  
+    22 00000028 BB00000000                      mov ebx, 0      ; normal exit code
+    23 0000002D B801000000                      mov eax, 1      ; process-termination service
+    24 00000032 CD80                            int 0x80        ; linux kernel service
